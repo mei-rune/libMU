@@ -5,7 +5,7 @@ TEST(object, simple)
 {
 
  object_t* nan = object_new_NaN();
- object_t* nil = object_new_Nil();;
+ object_t* nil = object_new_Nil();
  object_t* minusInfinity = object_new_MinusInfinity();
  object_t* positiveInfinity = object_new_PositiveInfinity();
 
@@ -433,6 +433,7 @@ TEST(object, dict_put_and_get)
 TEST(object, dict_element)
 {
     object_t* obj;
+	size_t i;
     int a0 = 0;
     int a1 = 0;
     int a2 = 0;
@@ -456,10 +457,12 @@ TEST(object, dict_element)
     ASSERT_EQ(8, object_length(ar));
 
 
-    for(size_t i = 0; i < 8; ++ i)
+    for( i = 0; i < 8; ++ i)
     {
+		const char* key;
+
         obj = object_element_at(ar, i);
-		const char* key = object_element_at_string(obj, 0, 0, 0).str;
+		key = object_element_at_string(obj, 0, 0, 0).str;
         if(0 == strcmp("a0",  key))
         {
             a0 = 1;
@@ -548,7 +551,7 @@ TEST(object, dict_element)
     a7 = 0;
 
 
-    for(size_t i = 0; i < 8; ++ i)
+    for( i = 0; i < 8; ++ i)
     {
         obj = object_element_at(ar, i);
         if(0 == strcmp("a0", object_get_string(obj, "key", 0, 0).str))

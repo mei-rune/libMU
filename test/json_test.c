@@ -23,7 +23,7 @@ TEST(json, simple)
 	ASSERT_EQ( -23, object_to_int(object_element_at(ret, 1), 0));
 
 	ASSERT_EQ( true, object_is_type(object_element_at(ret, 2), object_type_string));
-	ASSERT_STREQ( "123", string_data(&object_to_string(object_element_at(ret, 2), 0, 0)));
+	ASSERT_STREQ( "123", object_to_string(object_element_at(ret, 2), 0, 0).str);
 	ASSERT_EQ( true, object_is_type(object_element_at(ret, 3), object_type_boolean));
 	ASSERT_EQ( true, object_to_boolean(object_element_at(ret, 3), false));
 	ASSERT_EQ( true, object_is_type(object_element_at(ret, 4), object_type_boolean));
@@ -39,7 +39,7 @@ TEST(json, simple)
 	ASSERT_EQ( -23, object_to_int(object_element_at(ar, 1), 0));
 
 	ASSERT_EQ( true, object_is_type(object_element_at(ar, 2), object_type_string));
-	ASSERT_STREQ( "123", string_data(&object_to_string(object_element_at(ar, 2), 0, 0)));
+	ASSERT_STREQ( "123", object_to_string(object_element_at(ar, 2), 0, 0).str);
 	ASSERT_EQ( true, object_is_type(object_element_at(ar, 3), object_type_boolean));
 	ASSERT_EQ( true, object_to_boolean(object_element_at(ar, 3), false));
 	ASSERT_EQ( true, object_is_type(object_element_at(ar, 4), object_type_boolean));
@@ -50,7 +50,7 @@ TEST(json, simple)
 	map = object_element_at(ar, 5);
 	ASSERT_EQ( true, object_is_type(map, object_type_table));
 	ASSERT_EQ( true, object_is_type(object_get_object(map, "a"), object_type_string));
-	ASSERT_STREQ( "b", string_data(&object_to_string(object_get_object(map, "a"),0,0)));
+	ASSERT_STREQ( "b", object_to_string(object_get_object(map, "a"),0,0).str);
 
 	map2 = object_element_at(ret, 6);
 	ASSERT_EQ( true, object_is_type(map2, object_type_table));
@@ -63,7 +63,7 @@ TEST(json, simple)
 	ASSERT_EQ( true, object_is_type(object_get_object(map2, "a4"), object_type_boolean));
 	ASSERT_EQ( false, object_to_boolean(object_get_object(map2, "a4"), true));
 	ASSERT_EQ( true, object_is_type(object_get_object(map2, "a5"), object_type_string));
-	ASSERT_STREQ( "str",string_data(&object_to_string(object_get_object(map2, "a5"),0,0)));
+	ASSERT_STREQ( "str",object_to_string(object_get_object(map2, "a5"),0,0).str);
 	ASSERT_EQ( true, object_is_type(object_get_object(map2, "a11"), object_type_number));
 	ASSERT_EQ( 12, object_to_int(object_get_object(map2, "a11"), 0));
 
@@ -79,7 +79,7 @@ TEST(json, simple)
 	ASSERT_EQ( -23, object_to_int(object_element_at(ar2, 1), 0));
 
 	ASSERT_EQ( true, object_is_type(object_element_at(ar2, 2), object_type_string));
-	ASSERT_STREQ( "123", string_data(&object_to_string(object_element_at(ar2, 2),0,0)));
+	ASSERT_STREQ( "123", object_to_string(object_element_at(ar2, 2),0,0).str);
 	ASSERT_EQ( true, object_is_type(object_element_at(ar2, 3), object_type_boolean));
 	ASSERT_EQ( true, object_to_boolean(object_element_at(ar2, 3), false));
 	ASSERT_EQ( true, object_is_type(object_element_at(ar2, 4), object_type_boolean));
@@ -89,6 +89,6 @@ TEST(json, simple)
 	map2 = object_element_at(ar2, 5);
 	ASSERT_EQ( true, object_is_type(map2, object_type_table));
 	ASSERT_EQ( true, object_is_type(object_get_object(map, "a"), object_type_string));
-	ASSERT_STREQ( "b", string_data(&object_to_string(object_get_object(map, "a"),0,0)));
+	ASSERT_STREQ( "b", object_to_string(object_get_object(map, "a"),0,0).str);
 
 }
